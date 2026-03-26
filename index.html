@@ -232,19 +232,51 @@
     });
   });
 
-  // Form submission handler
+  // Form submission handler — sends data to Go High Level
   document.getElementById('leadForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const formData = new FormData(this);
+    const form = this;
+    const submitBtn = form.querySelector('.btn-cta');
+    const originalText = submitBtn.textContent;
+
+    const formData = new FormData(form);
     const data = {};
     formData.forEach(function (value, key) {
       data[key] = value;
     });
 
-    // Replace this alert with your Go High Level form action or webhook URL
-    alert('Thank you, ' + data.firstName + '! We will contact you shortly with your cash offer.');
+    // Map form fields to GHL expected field names
+    const payload = {
+      address: data.address,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      phone: data.phone,
+      email: data.email
+    };
 
-    this.reset();
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    fetch('https://api.leadconnectorhq.com/widget/form/XvcXuJfm6G62kRmOsGY4', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function () {
+      form.reset();
+      submitBtn.textContent = 'Offer Requested!';
+      setTimeout(function () {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, 3000);
+    })
+    .catch(function () {
+      submitBtn.textContent = 'Error — Try Again';
+      submitBtn.disabled = false;
+      setTimeout(function () {
+        submitBtn.textContent = originalText;
+      }, 3000);
+    });
   });
 </script>
