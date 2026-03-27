@@ -995,49 +995,110 @@ img {
   line-height: 1.5;
 }
 
-/* ---------- Reviews / Testimonials ---------- */
-.reviews {
-  background-color: var(--white);
+/* ---------- Google Reviews (Section 9) ---------- */
+.google-reviews {
+  background-color: var(--maroon) !important;
+  padding: 0 40px 60px;
 }
 
-.reviews-grid {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+.google-reviews-banner {
+  background-color: var(--dark-bg);
+  margin: 0 -40px;
+  padding: 15px 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.google-reviews-banner p {
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.google-reviews-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
   max-width: 1100px;
   margin: 0 auto;
-  flex-wrap: wrap;
 }
 
-.review-card {
-  flex: 1;
-  min-width: 280px;
-  max-width: 340px;
-  background: var(--light-gray);
+.g-review-card {
+  background: var(--white) !important;
   border-radius: 12px;
-  padding: 30px;
-  border-left: 4px solid var(--gold);
+  padding: 25px 30px;
 }
 
-.review-stars {
+.g-review-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.g-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.g-reviewer-info {
+  flex: 1;
+}
+
+.g-reviewer-info strong {
+  display: block;
+  font-size: 16px;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.g-stars {
   color: var(--gold);
-  font-size: 20px;
-  margin-bottom: 12px;
+  font-size: 18px;
+  letter-spacing: 1px;
 }
 
-.review-card p {
+.g-google-logo {
+  font-size: 18px;
+  font-weight: 500;
+  color: #4285F4;
+  text-align: right;
+  line-height: 1.2;
+  flex-shrink: 0;
+  font-family: 'Product Sans', 'Segoe UI', Arial, sans-serif;
+}
+
+.g-google-logo span {
+  font-size: 11px;
+  color: #666;
+  display: block;
+}
+
+.g-google-logo span::after {
+  content: '';
+}
+
+.g-review-card p {
   font-size: 15px;
   color: var(--text-dark);
-  font-style: italic;
-  line-height: 1.6;
-  margin-bottom: 15px;
+  line-height: 1.7;
+  margin: 0;
 }
 
-.review-card .reviewer {
-  font-weight: 700;
-  font-style: normal;
-  color: var(--maroon);
-  font-size: 14px;
+@media (max-width: 700px) {
+  .google-reviews-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* ---------- About Us ---------- */
