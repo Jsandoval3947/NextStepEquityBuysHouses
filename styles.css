@@ -462,6 +462,115 @@ img {
   }
 }
 
+/* ---------- Easy Way to Sell (Section 4) ---------- */
+.easy-sell {
+  background-color: #FDF8F0;
+  padding: 70px 40px;
+}
+
+.easy-sell .section-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.easy-sell .section-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-dark);
+  margin-bottom: 50px;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.easy-sell-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.easy-sell-badge {
+  flex-shrink: 0;
+}
+
+.google-badge {
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, #F0C940 0%, #C8960C 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(200, 150, 12, 0.4);
+  position: relative;
+}
+
+.google-badge::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 60%, rgba(212, 160, 23, 0.2) 100%);
+  z-index: 0;
+}
+
+.google-badge .badge-stars {
+  color: var(--white);
+  font-size: 16px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.google-badge .badge-text {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+}
+
+.google-badge .badge-google {
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  font-style: italic;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.easy-sell .lead-form {
+  flex: 1;
+  max-width: 480px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 700px) {
+  .easy-sell-inner {
+    flex-direction: column;
+  }
+
+  .easy-sell .section-title {
+    font-size: 26px;
+  }
+}
+
 /* ---------- How We Work Section ---------- */
 .section {
   padding: 70px 40px;

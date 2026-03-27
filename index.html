@@ -107,6 +107,31 @@
   </div>
 </section>
 
+<!-- EASY WAY TO SELL (Section 4) -->
+<section class="easy-sell" id="easy-sell">
+  <h2 class="section-title">The Easy Way To Sell Your Maryland Home</h2>
+  <p class="section-subtitle">No repairs, No stress, No waiting. We'll buy your house as-is and let you pick the closing date. Just send us a few details below to get started!</p>
+  <div class="easy-sell-inner">
+    <div class="easy-sell-badge">
+      <div class="google-badge">
+        <span class="badge-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="badge-text">5 STAR<br>RATING</span>
+        <span class="badge-google">Google</span>
+      </div>
+    </div>
+    <form class="lead-form" id="leadForm2">
+      <input type="text" name="address" placeholder="Enter Your Address*" required>
+      <div class="form-row">
+        <input type="text" name="firstName" placeholder="First Name*" required>
+        <input type="text" name="lastName" placeholder="Last Name*" required>
+      </div>
+      <input type="tel" name="phone" placeholder="Phone*" required>
+      <input type="email" name="email" placeholder="Email">
+      <button type="submit" class="btn-cta">Get My Fair Cash Offer! &#128140;</button>
+    </form>
+  </div>
+</section>
+
 <!-- HOW WE WORK -->
 <section class="section how-it-works" id="how-we-work">
   <h2 class="section-title">Here's Your Plan to Sell Fast</h2>
@@ -289,6 +314,53 @@
     });
 
     // Map form fields to GHL expected field names
+    const payload = {
+      address: data.address,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      phone: data.phone,
+      email: data.email
+    };
+
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    fetch('https://api.leadconnectorhq.com/widget/form/XvcXuJfm6G62kRmOsGY4', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function () {
+      form.reset();
+      submitBtn.textContent = 'Offer Requested!';
+      setTimeout(function () {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, 3000);
+    })
+    .catch(function () {
+      submitBtn.textContent = 'Error — Try Again';
+      submitBtn.disabled = false;
+      setTimeout(function () {
+        submitBtn.textContent = originalText;
+      }, 3000);
+    });
+  });
+
+  // Second form submission handler (Section 4)
+  document.getElementById('leadForm2').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const form = this;
+    const submitBtn = form.querySelector('.btn-cta');
+    const originalText = submitBtn.textContent;
+
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach(function (value, key) {
+      data[key] = value;
+    });
+
     const payload = {
       address: data.address,
       first_name: data.firstName,
