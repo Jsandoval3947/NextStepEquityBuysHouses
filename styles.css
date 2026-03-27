@@ -789,6 +789,17 @@ img {
   }
 }
 
+.easy-process-cta {
+  display: block;
+  max-width: 700px;
+  margin: 50px auto 0;
+  padding: 20px 40px;
+  font-size: 22px;
+  font-weight: 800;
+  border-radius: 50px;
+  text-align: center;
+}
+
 /* ---------- How We Work Section ---------- */
 .section {
   padding: 70px 40px;
