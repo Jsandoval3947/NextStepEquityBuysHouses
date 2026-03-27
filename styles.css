@@ -408,6 +408,37 @@ img {
   color: var(--gold-light);
 }
 
+/* ---------- Fast Cash Offer (Section 3) ---------- */
+.fast-cash-offer {
+  background-color: var(--white);
+  padding: 70px 40px;
+  border-top: 1px solid var(--medium-gray);
+}
+
+.rating-inline {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: rgba(212, 160, 23, 0.08);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.rating-inline .stars {
+  color: var(--gold);
+  font-size: 28px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.rating-inline p {
+  margin-bottom: 0;
+  color: var(--text-light);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 @media (max-width: 900px) {
   .sell-for-cash-inner {
     flex-direction: column;
@@ -422,6 +453,12 @@ img {
 
   .sell-for-cash-text h2 {
     font-size: 28px;
+  }
+
+  .rating-inline {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 }
 
