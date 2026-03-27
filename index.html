@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Next Step Equity | Sell Your Maryland Home Fast</title>
   <meta name="description" content="We buy houses as-is in Maryland. Get a free, no-pressure cash offer today. No repairs, no fees, no hassle.">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -259,6 +259,22 @@
       <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80" alt="Fair cash offer house Maryland">
     </div>
   </div>
+</section>
+
+<!-- NEED FAST SOLUTIONS (Section 8) -->
+<section class="fast-solutions">
+  <p class="section-label-gold">Need Fast Solutions?</p>
+  <h2 class="fast-solutions-title">Sell Your Maryland Home Fast For Cash &#128176;</h2>
+  <form class="lead-form fast-solutions-form" id="leadForm3">
+    <input type="text" name="address" placeholder="Enter Your Address*" required>
+    <div class="form-row">
+      <input type="text" name="firstName" placeholder="First Name*" required>
+      <input type="text" name="lastName" placeholder="Last Name*" required>
+    </div>
+    <input type="tel" name="phone" placeholder="Phone*" required>
+    <input type="email" name="email" placeholder="Email">
+    <button type="submit" class="btn-cta">Get My Fair Cash Offer! &#128140;</button>
+  </form>
 </section>
 
 <!-- HOW WE WORK -->
@@ -520,6 +536,46 @@
       setTimeout(function () {
         submitBtn.textContent = originalText;
       }, 3000);
+    });
+  });
+
+  // Third form submission handler (Section 8)
+  document.getElementById('leadForm3').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var form = this;
+    var submitBtn = form.querySelector('.btn-cta');
+    var originalText = submitBtn.textContent;
+
+    var formData = new FormData(form);
+    var data = {};
+    formData.forEach(function (value, key) { data[key] = value; });
+
+    var payload = {
+      address: data.address,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      phone: data.phone,
+      email: data.email
+    };
+
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    fetch('https://api.leadconnectorhq.com/widget/form/XvcXuJfm6G62kRmOsGY4', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function () {
+      form.reset();
+      submitBtn.textContent = 'Offer Requested!';
+      setTimeout(function () { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 3000);
+    })
+    .catch(function () {
+      submitBtn.textContent = 'Error - Try Again';
+      submitBtn.disabled = false;
+      setTimeout(function () { submitBtn.textContent = originalText; }, 3000);
     });
   });
 </script>

@@ -873,6 +873,49 @@ img {
   }
 }
 
+/* ---------- Need Fast Solutions (Section 8) ---------- */
+.fast-solutions {
+  background-color: var(--white);
+  padding: 70px 40px;
+  text-align: center;
+}
+
+.section-label-gold {
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.fast-solutions-title {
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.fast-solutions-form {
+  max-width: 550px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.fast-solutions-form input {
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 600px) {
+  .fast-solutions-title {
+    font-size: 26px;
+  }
+}
+
 /* ---------- How We Work Section ---------- */
 .section {
   padding: 70px 40px;
