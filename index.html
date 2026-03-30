@@ -3,633 +3,1027 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Next Step Equity | Sell Your Maryland Home Fast</title>
-  <meta name="description" content="We buy houses as-is in Maryland. Get a free, no-pressure cash offer today. No repairs, no fees, no hassle.">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <title>Next Step Equity Group | We Buy Maryland Homes for Cash</title>
+  <meta name="description" content="Next Step Equity Group buys houses as-is across Maryland. Get a fair, no-obligation cash offer today. No repairs, no fees, close on your timeline.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #0B1120;
+      --navy-light: #131B2E;
+      --charcoal: #1A2332;
+      --charcoal-light: #222F42;
+      --gold: #D4A017;
+      --gold-light: #E8B84B;
+      --gold-dark: #B8860B;
+      --white: #FFFFFF;
+      --white-dim: rgba(255,255,255,0.7);
+      --white-muted: rgba(255,255,255,0.5);
+      --font-head: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --nav-height: 72px;
+    }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; cursor: pointer; font-family: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== STICKY NAV ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      background: rgba(11, 17, 32, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(212, 160, 23, 0.08);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .navbar.scrolled {
+      background: rgba(11, 17, 32, 0.97);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    }
+
+    /* Logo */
+    .logo { display: flex; align-items: center; gap: 12px; z-index: 1001; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(212,160,23,0.3);
+    }
+    .logo-icon svg { width: 24px; height: 24px; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .logo-brand {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .logo-brand span { color: var(--gold); }
+    .logo-sub {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white-muted);
+    }
+
+    /* Nav Links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .nav-links a {
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--white-dim);
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* CTA Button */
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 50px;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(212,160,23,0.35);
+      position: relative;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(212,160,23,0.5);
+    }
+    .btn-gold:active { transform: translateY(0); }
+
+    /* Pulse ring on nav CTA */
+    .nav-cta { position: relative; }
+    .nav-cta::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50px;
+      border: 2px solid var(--gold);
+      opacity: 0;
+      animation: pulseRing 2.5s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0% { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.15); }
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2.5px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* Mobile nav */
+    @media (max-width: 960px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(11,17,32,0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s;
+      }
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .nav-links a {
+        font-size: 1.25rem;
+        padding: 14px 24px;
+        text-align: center;
+      }
+      .nav-links .nav-cta {
+        margin-top: 12px;
+      }
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-height) + 3rem) clamp(1.25rem, 5vw, 4rem) 3rem;
+      overflow: hidden;
+    }
+
+    /* Animated dark background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(212,160,23,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 80% 20%, rgba(212,160,23,0.04) 0%, transparent 50%),
+        linear-gradient(180deg, var(--navy) 0%, var(--charcoal) 50%, var(--navy) 100%);
+      z-index: 0;
+    }
+
+    /* Floating particles */
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      animation: floatParticle linear infinite;
+    }
+    @keyframes floatParticle {
+      0% { opacity: 0; transform: translateY(0) scale(0); }
+      10% { opacity: 0.25; transform: scale(1); }
+      90% { opacity: 0.08; }
+      100% { opacity: 0; transform: translateY(-100vh) scale(0.5); }
+    }
+
+    /* Animated grid lines */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(212,160,23,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,160,23,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridShift 20s linear infinite;
+    }
+    @keyframes gridShift {
+      0% { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
+
+    /* Glow orbs */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      animation: orbFloat 8s ease-in-out infinite alternate;
+    }
+    .glow-orb-1 {
+      width: 400px; height: 400px;
+      background: rgba(212,160,23,0.07);
+      top: 10%; left: -5%;
+      animation-delay: 0s;
+    }
+    .glow-orb-2 {
+      width: 300px; height: 300px;
+      background: rgba(212,160,23,0.05);
+      bottom: 5%; right: -5%;
+      animation-delay: -4s;
+    }
+    .glow-orb-3 {
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.03);
+      top: 40%; right: 20%;
+      animation-delay: -2s;
+    }
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, -30px) scale(1.15); }
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(212,160,23,0.1);
+      border: 1px solid rgba(212,160,23,0.25);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out both;
+    }
+    .hero-badge svg { width: 16px; height: 16px; fill: var(--gold-light); }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 0.8s ease-out 0.15s both;
+    }
+    .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: var(--white-dim);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.45s both;
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px;
+      border: 2px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 50px;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      background: rgba(255,255,255,0.03);
+    }
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-2px);
+    }
+    .btn-outline svg { width: 18px; height: 18px; }
+    .hero .btn-gold {
+      padding: 14px 36px;
+      font-size: 0.95rem;
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px 40px;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--white-muted);
+    }
+    .trust-icon {
+      width: 36px; height: 36px;
+      background: rgba(212,160,23,0.1);
+      border: 1px solid rgba(212,160,23,0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-icon svg { width: 18px; height: 18px; fill: var(--gold); }
+    .trust-item strong {
+      color: var(--white);
+      font-weight: 600;
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    /* Divider line between hero and next section */
+    .hero-divider {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,160,23,0.2), transparent);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeInUp 0.8s ease-out 0.8s both;
+    }
+    .scroll-indicator span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white-muted);
+    }
+    .scroll-mouse {
+      width: 24px; height: 38px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      position: relative;
+    }
+    .scroll-mouse::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 50%;
+      transform: translateX(-50%);
+      width: 3px; height: 8px;
+      background: var(--gold);
+      border-radius: 3px;
+      animation: scrollDot 2s ease-in-out infinite;
+    }
+    @keyframes scrollDot {
+      0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 0.3; transform: translateX(-50%) translateY(10px); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== SECTION SHARED ===== */
+    .section {
+      position: relative;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+      overflow: hidden;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: var(--white-dim);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-header .section-subtitle { margin: 0 auto; }
+    .section-divider {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,160,23,0.15), transparent);
+    }
+
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== PROBLEM SECTION ===== */
+    .problem { background: var(--charcoal); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .problem-card {
+      position: relative;
+      padding: 28px 24px;
+      background: rgba(11,17,32,0.6);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .problem-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212,160,23,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .problem-card:hover::before { opacity: 1; }
+    .problem-icon {
+      width: 48px; height: 48px;
+      background: rgba(212,160,23,0.1);
+      border: 1px solid rgba(212,160,23,0.15);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .problem-icon svg { width: 24px; height: 24px; fill: var(--gold); }
+    .problem-card h3 {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .problem-card p {
+      font-size: 0.88rem;
+      color: var(--white-dim);
+      line-height: 1.6;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-it-works { background: var(--navy); }
+    .steps-container {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 0 clamp(12px, 2vw, 32px);
+      position: relative;
+    }
+    /* Connecting line */
+    .steps-line {
+      position: absolute;
+      top: 36px;
+      left: calc(16.66% + 36px);
+      right: calc(16.66% + 36px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), rgba(212,160,23,0.3), var(--gold));
+      z-index: 0;
+    }
+    .step-number {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      margin: 0 auto 1.25rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 20px rgba(212,160,23,0.3);
+    }
+    .step h3 {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+    .step p {
+      font-size: 0.9rem;
+      color: var(--white-dim);
+      line-height: 1.6;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    /* ===== OFFERS SECTION ===== */
+    .offers { background: var(--charcoal); }
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .offer-card {
+      position: relative;
+      padding: 36px 28px;
+      background: linear-gradient(180deg, rgba(11,17,32,0.7), rgba(11,17,32,0.9));
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+    .offer-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212,160,23,0.25);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+    .offer-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 50px;
+      margin-bottom: 1.25rem;
+    }
+    .offer-badge--gold {
+      background: rgba(212,160,23,0.15);
+      color: var(--gold-light);
+      border: 1px solid rgba(212,160,23,0.25);
+    }
+    .offer-badge--blue {
+      background: rgba(59,130,246,0.12);
+      color: #93bbfc;
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+    .offer-badge--red {
+      background: rgba(239,68,68,0.12);
+      color: #f9a8a8;
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .offer-card h3 {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+    }
+    .offer-card > p {
+      font-size: 0.9rem;
+      color: var(--white-dim);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+    .offer-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .offer-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--white-dim);
+    }
+    .offer-features li svg {
+      width: 18px; height: 18px;
+      fill: var(--gold);
+      flex-shrink: 0;
+    }
+    .offer-card .btn-gold {
+      margin-top: 1.75rem;
+      width: 100%;
+      justify-content: center;
+      padding: 12px 24px;
+      font-size: 0.85rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .hero { padding-bottom: 5rem; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .hero .btn-gold,
+      .hero .btn-outline { width: 100%; max-width: 320px; justify-content: center; }
+      .trust-bar { flex-direction: column; align-items: center; gap: 16px; }
+      .scroll-indicator { display: none; }
+      .steps-container { flex-direction: column; gap: 2.5rem; }
+      .steps-line { display: none; }
+      .offers-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="top-bar">
-  <span>CALL US!</span>
-  <a href="tel:+14433295910">(443) 329-5910</a>
-</div>
-
-<!-- NAVIGATION -->
+<!-- ===== NAVIGATION ===== -->
 <nav class="navbar" id="navbar">
-  <div class="logo">
+  <a href="#" class="logo" aria-label="Next Step Equity Group — Home">
     <div class="logo-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-        <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm0 3.5l5 4.5v7h-2v-6H9v6H7v-7l5-4.5z"/>
-        <circle cx="12" cy="13" r="2" fill="#D4A017"/>
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 12L12 4L21 12H18V20H14V15H10V20H6V12H3Z" fill="white"/>
+        <path d="M12 8L8 11.5V17H10V14H14V17H16V11.5L12 8Z" fill="rgba(11,17,32,0.6)"/>
       </svg>
     </div>
     <div class="logo-text">
-      <span class="brand-next">NEXT STEP</span> <span class="brand-step">EQUITY</span>
-      <span class="brand-sub">Buys Houses</span>
+      <span class="logo-brand">NEXT STEP <span>EQUITY</span></span>
+      <span class="logo-sub">Group &bull; Maryland</span>
     </div>
-  </div>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+  </a>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
+
   <div class="nav-links" id="navLinks">
-    <a href="#how-we-work">How We Work</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#about">About</a>
     <a href="#reviews">Reviews</a>
-    <a href="#about">About Us</a>
+    <a href="#where-we-buy">Where We Buy</a>
     <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="btn-gold nav-cta">Get My Cash Offer</a>
   </div>
 </nav>
 
-<!-- HERO SECTION -->
-<section class="hero">
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <!-- Animated background layers -->
   <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+  <div class="glow-orb glow-orb-3"></div>
+
   <div class="hero-content">
-    <div class="hero-left">
-      <h1>You Deserve a Fresh Start.<br>Sell Your Maryland Home Fast.</h1>
-      <p class="subtext">
-        Your house shouldn't hold you back. No repairs, no agents, no waiting. Get a
-        <span class="highlight">FREE, No-Pressure Cash Offer</span> and move forward on your terms.
-      </p>
-      <div class="rating-badge">
-        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="rating-text">5-Star Rated on Google</span>
-      </div>
+    <div class="hero-badge">
+      <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.5L10 13.68 5.06 16.1 6 10.6l-4-3.9 5.61-.87L10 1z"/></svg>
+      Trusted Maryland Home Buyers
     </div>
-    <div class="hero-right">
-      <form class="lead-form" id="leadForm">
-        <input type="text" name="address" placeholder="Enter Your Address*" required>
-        <div class="form-row">
-          <input type="text" name="firstName" placeholder="First Name*" required>
-          <input type="text" name="lastName" placeholder="Last Name*" required>
+
+    <h1>Sell Your Maryland Home <span class="gold">Fast&nbsp;for&nbsp;Cash</span></h1>
+
+    <p class="hero-sub">No repairs. No agent fees. No&nbsp;waiting. Get a fair, no-obligation cash offer and close on <em>your</em> timeline — as fast as&nbsp;7&nbsp;days.</p>
+
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-gold">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07A19.5 19.5 0 016.16 13.7a19.86 19.86 0 01-3.07-8.67A2 2 0 015.11 3h3a2 2 0 012 1.72c.13.81.36 1.6.68 2.34a2 2 0 01-.45 2.11L9.09 10.4a16 16 0 004.5 4.5l1.22-1.22a2 2 0 012.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0122 16.92z"/></svg>
+        Get My Cash Offer
+      </a>
+      <a href="tel:+14434549521" class="btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07A19.5 19.5 0 016.16 13.7a19.86 19.86 0 01-3.07-8.67A2 2 0 015.11 3h3a2 2 0 012 1.72c.13.81.36 1.6.68 2.34a2 2 0 01-.45 2.11L9.09 10.4a16 16 0 004.5 4.5l1.22-1.22a2 2 0 012.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0122 16.92z"/></svg>
+        Call (443) 454-9521
+      </a>
+    </div>
+
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         </div>
-        <input type="tel" name="phone" placeholder="Phone*" required>
-        <input type="email" name="email" placeholder="Email">
-        <button type="submit" class="btn-cta">Get My Fair Cash Offer! &#128140;</button>
-      </form>
+        <div><strong>No Fees or Commissions</strong>Keep every dollar</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        </div>
+        <div><strong>Close in 7 Days</strong>Or on your schedule</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <div><strong>As-Is Condition</strong>Zero repairs needed</div>
+      </div>
     </div>
   </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-mouse"></div>
+  </div>
+
+  <div class="hero-divider"></div>
 </section>
 
-<!-- SELL YOUR HOUSE FOR CASH (Section 2) -->
-<section class="sell-for-cash">
-  <div class="sell-for-cash-inner">
-    <div class="sell-for-cash-image">
-      <img src="Front%20Home%20Nancy%20Lynn.png" alt="Maryland house we buy as-is">
+<!-- ===== PROBLEM SECTION ===== -->
+<section class="section problem" id="problems">
+  <div class="section-header reveal">
+    <div class="section-label">We Understand</div>
+    <h2 class="section-title">We Get It. Life Gets <span class="gold">Complicated.</span></h2>
+    <p class="section-subtitle">Whatever your situation, we've helped Maryland homeowners just like you find a clear path forward — with zero judgment and zero pressure.</p>
+  </div>
+
+  <div class="problem-grid">
+    <div class="problem-card reveal">
+      <div class="problem-icon">
+        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+      </div>
+      <h3>Foreclosure</h3>
+      <p>Facing missed payments or a looming auction date? We can close fast enough to stop foreclosure and protect your credit.</p>
     </div>
-    <div class="sell-for-cash-text">
-      <p class="section-label">Sell Your House For Cash</p>
-      <h2>Selling a House Shouldn't Be This Hard</h2>
-      <p class="tagline">You have enough on your plate. We take the stress of selling off of it.</p>
-      <p>You might be dealing with a house that needs work, a situation that feels overwhelming, or a timeline that's running out. Most homeowners in your position spend months juggling repairs, agent fees, and buyers who fall through. <strong>That's not the path you have to take.</strong></p>
-      <p>We understand what you're going through because we've helped hundreds of Maryland homeowners in the same spot. <strong>Backed by 5-star Google reviews</strong>, we've built our reputation on making this easy for people like you. We buy your house as-is, put cash in your hand, and let you close on the day that works for your life.</p>
-      <p>You don't have to figure this out alone. Call us at <a href="tel:+14433295910" class="cta-phone">(443) 329-5910</a> and let's find the right solution for you.</p>
+
+    <div class="problem-card reveal">
+      <div class="problem-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
+      </div>
+      <h3>Probate</h3>
+      <p>Inherited a property during a difficult time? We handle the complexity so you can focus on what matters most — your family.</p>
+    </div>
+
+    <div class="problem-card reveal">
+      <div class="problem-icon">
+        <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+      </div>
+      <h3>Tax Liens</h3>
+      <p>Behind on property taxes? We can pay off liens at closing and still put cash in your pocket — no stress, no surprises.</p>
+    </div>
+
+    <div class="problem-card reveal">
+      <div class="problem-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+      </div>
+      <h3>Divorce</h3>
+      <p>Splitting up is hard enough. We make selling the shared home simple, fast, and fair for everyone involved.</p>
+    </div>
+
+    <div class="problem-card reveal">
+      <div class="problem-icon">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </div>
+      <h3>Inherited Property</h3>
+      <p>Don't want to manage a property you didn't ask for? We buy inherited homes as-is — no cleanout or repairs needed.</p>
+    </div>
+
+    <div class="problem-card reveal">
+      <div class="problem-icon">
+        <svg viewBox="0 0 24 24"><path d="M18 11V6l-5-4-5 4v1H2v14h20V11h-4zm-9 8H5v-6h4v6zm6 0h-4v-6h4v6zm4 0h-2v-8h-2V5.5l3-2.25V19zM7 9H5V7h2v2z"/></svg>
+      </div>
+      <h3>Tired Landlord</h3>
+      <p>Burnt out from bad tenants, maintenance calls, and slim margins? Cash out your rental and reclaim your peace of mind.</p>
     </div>
   </div>
+  <div class="section-divider"></div>
 </section>
 
-<!-- FAST CASH OFFER (Section 3) -->
-<section class="fast-cash-offer">
-  <div class="sell-for-cash-inner">
-    <div class="sell-for-cash-image">
-      <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=800&q=80" alt="Distressed property we buy as-is in Maryland">
-    </div>
-    <div class="sell-for-cash-text">
-      <p class="section-label">Fast Cash Offer</p>
-      <h2>Your Situation Is Unique. Your Solution Should Be Too.</h2>
-      <p>Foreclosure notices piling up. A divorce that needs to close a chapter. An inherited house you never asked for. These aren't just "property problems" - they're life problems. And you deserve someone who gets that.</p>
-      <div class="rating-inline">
-        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p>We're <strong>Next Step Equity</strong> - a local Maryland team, not a faceless corporation. <a href="#about" class="cta-phone">Our team</a> lives and works right here, and we've walked alongside homeowners through every situation you can imagine.</p>
-      </div>
-      <p>Without the right help, these situations get worse - more fees, more stress, more sleepless nights. But it doesn't have to go that way. We buy your house as-is for cash and close on your timeline, whether that's 7 days or 60.</p>
-      <p>Imagine the weight off your shoulders when the house is sold, the cash is in your hand, and you can finally focus on what comes next. That's what we do for people every day. Let's talk about your situation.</p>
-    </div>
-  </div>
-</section>
-
-<!-- EASY WAY TO SELL (Section 4) -->
-<section class="easy-sell" id="easy-sell">
-  <h2 class="section-title">The Easy Way To Sell Your Maryland Home</h2>
-  <p class="section-subtitle">No repairs, No stress, No waiting. We'll buy your house as-is and let you pick the closing date. Just send us a few details below to get started!</p>
-  <div class="easy-sell-inner">
-    <div class="easy-sell-badge">
-      <div class="google-badge">
-        <span class="badge-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="badge-text">5 STAR<br>RATING</span>
-        <span class="badge-google">Google</span>
-      </div>
-    </div>
-    <form class="lead-form" id="leadForm2">
-      <input type="text" name="address" placeholder="Enter Your Address*" required>
-      <div class="form-row">
-        <input type="text" name="firstName" placeholder="First Name*" required>
-        <input type="text" name="lastName" placeholder="Last Name*" required>
-      </div>
-      <input type="tel" name="phone" placeholder="Phone*" required>
-      <input type="email" name="email" placeholder="Email">
-      <button type="submit" class="btn-cta">Get My Fair Cash Offer! &#128140;</button>
-    </form>
-  </div>
-</section>
-
-<!-- SELLING IN ANY SITUATION (Section 5) -->
-<section class="situations" id="situations">
-  <p class="section-label-light">Selling In Any Situation</p>
-  <h2 class="situations-title">We Buy Houses In Maryland In All Situations</h2>
-  <p class="situations-subtitle">Has your tenant turned your rental into a disaster zone? Going through a difficult divorce and need to sell quickly? Whatever situation brought you here, we buy houses for cash. <a href="#leadForm" class="situations-link">Fill out our form for your no obligation offer</a>!</p>
-  <div class="situations-grid">
-    <div class="situation-card">
-      <div class="situation-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm-1 14H7v-4h4v4zm6 0h-4v-4h4v4zm-5-6V9h2v2h-2z"/><path d="M19 3h-2l-1 2h4l-1-2zM7 3H5L4 5h4L7 3z"/></svg>
-      </div>
-      <h3>Sibling Property Dispute</h3>
-      <p>Mom left the house to all three kids, but no one can agree on what to do? We'll buy the inherited house fast so you can split the cash however you decide, with no repairs and no delays. If you're ready to sell without the stress, we're here to help!</p>
-    </div>
-    <div class="situation-card">
-      <div class="situation-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M22 9V7h-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v2H2v2h2v6H2v2h2v2a2 2 0 002 2h12a2 2 0 002-2v-2h2v-2h-2V9h2zM6 19V5h12v14H6zm4-8h4v2h-4v-2zm0 4h4v2h-4v-2zm0-8h4v2h-4V7z"/></svg>
-      </div>
-      <h3>Roof or Plumbing Problems</h3>
-      <p>That contractor just quoted $30K for repairs? Skip the renovations and sell your house for cash instead. We buy houses as-is, even with leaky roofs, busted pipes, or foundation issues, so you can move on without the stress.</p>
-    </div>
-    <div class="situation-card">
-      <div class="situation-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M18 18.5a1.5 1.5 0 01-1.5-1.5 1.5 1.5 0 011.5-1.5 1.5 1.5 0 011.5 1.5 1.5 1.5 0 01-1.5 1.5zm1.5-9L17 4H3v2h13l2 4H5a2 2 0 00-2 2v3h2a3 3 0 003 3 3 3 0 003-3h6a3 3 0 003 3 3 3 0 003-3h2v-3l-2.5-5zM8 18.5A1.5 1.5 0 016.5 17 1.5 1.5 0 018 15.5a1.5 1.5 0 011.5 1.5A1.5 1.5 0 018 18.5z"/></svg>
-      </div>
-      <h3>Sudden Job Transfer</h3>
-      <p>New job in another state and you need to sell your Maryland house fast? We'll buy it as-is with a quick, hassle-free closing so you can focus on your big move and start your next chapter with confidence.</p>
-    </div>
-    <div class="situation-card">
-      <div class="situation-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-      </div>
-      <h3>Debt Consolidation</h3>
-      <p>Bill collectors blowing up your phone? It's a stressful cycle that only gets worse over time. Sell your house in Maryland, and turn it into fast, debt-erasing cash, with no delays and no repairs. A fresh financial start could be just a phone call away.</p>
-    </div>
-    <div class="situation-card">
-      <div class="situation-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L10 14v1a2 2 0 002 2v1.93zm6.9-2.54A1.99 1.99 0 0018 16h-1v-3a1 1 0 00-1-1h-6v-2h2a1 1 0 001-1V7h2a2 2 0 002-2v-.41a7.94 7.94 0 012.9 12.8z"/></svg>
-      </div>
-      <h3>Predatory Loan Escape</h3>
-      <p>That "too good to be true" mortgage turned into a financial mess? We buy houses fast, helping you escape the stress of that complicated loan. No banks or delays, just a fair cash offer and a clean slate.</p>
-    </div>
-    <div class="situation-card">
-      <div class="situation-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M7 2v11h3v9l7-12h-4l4-8H7z"/></svg>
-      </div>
-      <h3>Neighborhood Decline</h3>
-      <p>Your once-quiet street now makes you double-check the locks at night? When your home no longer feels safe, it's time to move on. Sell your house as-is for cash, so you can find peace and freedom somewhere new.</p>
-    </div>
-  </div>
-</section>
-
-<!-- EASY SELLING PROCESS (Section 6) -->
-<section class="easy-process">
-  <p class="section-label">Easy Selling Process</p>
-  <h2 class="easy-process-title">3 Easy Steps To Sell Your House For Cash</h2>
-  <p class="easy-process-desc">With hundreds of successful closings under our belt, we've fine-tuned every step of the process to make it smooth, stress-free, and efficient. We handle all the paperwork and logistics from first contact to closing day, so you can focus on what's next. Whether you're dealing with a problem property, facing a time crunch, or simply want a hassle-free solution, we're ready to buy your house. No repairs, no hidden fees, and no waiting, just a straightforward cash offer and a flexible timeline that lets you move forward with confidence.</p>
-  <div class="easy-process-steps">
-    <div class="easy-step-card">
-      <div class="easy-step-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM6 20V4h7v5h5v11H6zm3-7h6v2H9v-2zm0 4h6v2H9v-2zm0-8h3v2H9V9z"/><path d="M10 13l-1.5 1.5L10 16l4-4-1.5-1.5L10 13z"/></svg>
-      </div>
-      <h3>Step 1:<br>Contact Us!</h3>
-      <p>Reach out and tell us a little about your property and your situation. We'll start working on your custom <strong>cash offer</strong> right away, no pressure.</p>
-    </div>
-    <div class="easy-step-arrow">&#10095;</div>
-    <div class="easy-step-card">
-      <div class="easy-step-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm-1 14H7v-4h4v4zm6 0h-4v-4h4v4z"/><circle cx="14" cy="11" r="2"/><path d="M14 9a2 2 0 110 4 2 2 0 010-4z"/></svg>
-      </div>
-      <h3>Step 2:<br>Get Your Offer!</h3>
-      <p>We'll present a <strong>fair, no-obligation cash offer</strong> based on your home's current condition and market value. No need to fix anything. We buy as-is.</p>
-    </div>
-    <div class="easy-step-arrow">&#10095;</div>
-    <div class="easy-step-card">
-      <div class="easy-step-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-      </div>
-      <h3>Step 3:<br>Get Your Cash!</h3>
-      <p>You choose the <strong>closing date that fits your timeline</strong>, whether that's in 7 days or a few weeks. All you have to do is show up and get paid.</p>
-    </div>
-  </div>
-  <a href="#leadForm" class="btn-cta easy-process-cta">Get My Cash Offer!!!</a>
-</section>
-
-<!-- YOU CHOOSE THE CLOSING DATE (Section 7) -->
-<section class="closing-date">
-  <h2 class="closing-date-title">You Choose The Closing Date, We Bring The Cash!</h2>
-
-  <div class="closing-row">
-    <div class="closing-card">
-      <h3>Sell Without Agents</h3>
-      <p>When you sell your house with a real estate agent, you'll pay commissions and spend thousands on staging and repairs. We buy houses for cash across Maryland without fees or showings, and you don't need to fix a thing.</p>
-    </div>
-    <div class="closing-img">
-      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80" alt="House we buy as-is in Maryland">
-    </div>
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section how-it-works" id="how-it-works">
+  <div class="section-header reveal">
+    <div class="section-label">Simple Process</div>
+    <h2 class="section-title">How It <span class="gold">Works</span></h2>
+    <p class="section-subtitle">Three simple steps. No hoops, no hidden fees, no wasted time. We make selling your home refreshingly easy.</p>
   </div>
 
-  <div class="closing-row">
-    <div class="closing-card">
-      <h3>Private Home Sale</h3>
-      <p>There is no need to list your house on the MLS or host open houses when you sell your house to Next Step Equity. We buy houses as-is and we only visit once.</p>
-    </div>
-    <div class="closing-img">
-      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Maryland property bought for cash">
-    </div>
-  </div>
+  <div class="steps-container reveal">
+    <div class="steps-line"></div>
 
-  <div class="closing-row">
-    <div class="closing-card">
-      <h3>Flexible Move-Out Date</h3>
-      <p>When you sell your Maryland house to Next Step Equity, you control the timeline. We buy houses on terms that work for your schedule. Pack at your pace, move when you're ready.</p>
-    </div>
-    <div class="closing-img">
-      <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=800&q=80" alt="Home sold fast for cash in Maryland">
-    </div>
-  </div>
-
-  <div class="closing-row">
-    <div class="closing-card">
-      <h3>Transparent Pricing</h3>
-      <p>Traditional buyers start with their offer price but then after inspection "discoveries," suddenly your $300,000 sale nets only $265,000! We calculate repair costs upfront and consider them before giving you our cash offer.</p>
-    </div>
-    <div class="closing-img">
-      <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80" alt="Fair cash offer house Maryland">
-    </div>
-  </div>
-</section>
-
-<!-- NEED FAST SOLUTIONS (Section 8) -->
-<section class="fast-solutions">
-  <p class="section-label-gold">Need Fast Solutions?</p>
-  <h2 class="fast-solutions-title">Sell Your Maryland Home Fast For Cash &#128176;</h2>
-  <form class="lead-form fast-solutions-form" id="leadForm3">
-    <input type="text" name="address" placeholder="Enter Your Address*" required>
-    <div class="form-row">
-      <input type="text" name="firstName" placeholder="First Name*" required>
-      <input type="text" name="lastName" placeholder="Last Name*" required>
-    </div>
-    <input type="tel" name="phone" placeholder="Phone*" required>
-    <input type="email" name="email" placeholder="Email">
-    <button type="submit" class="btn-cta">Get My Fair Cash Offer! &#128140;</button>
-  </form>
-</section>
-
-<!-- HOW WE WORK -->
-<section class="section how-it-works" id="how-we-work">
-  <h2 class="section-title">Here's Your Plan to Sell Fast</h2>
-  <p class="section-subtitle">Three simple steps between you and a fresh start.</p>
-  <div class="steps-grid">
-    <div class="step-card">
+    <div class="step">
       <div class="step-number">1</div>
-      <h3>Tell Us Your Situation</h3>
-      <p>Fill out our quick form or call us. Share what's going on - we're here to listen, not to judge. Any house, any condition.</p>
+      <h3>Tell Us About Your Home</h3>
+      <p>Fill out a short form or call us. Share a few basic details about your property — that's all we need to get started.</p>
     </div>
-    <div class="step-card">
+
+    <div class="step">
       <div class="step-number">2</div>
-      <h3>Get a No-Obligation Offer</h3>
-      <p>Within 24 hours, you'll have a fair cash offer in hand. No pressure, no games, no hidden fees. Just a straightforward number.</p>
+      <h3>Get Your Cash Offer</h3>
+      <p>We'll evaluate your home and present a fair, no-obligation cash offer — usually within 24 hours. No pressure, ever.</p>
     </div>
-    <div class="step-card">
+
+    <div class="step">
       <div class="step-number">3</div>
-      <h3>Close on Your Timeline</h3>
-      <p>You pick the date. We handle the paperwork. You walk away with cash and the freedom to move forward with your life.</p>
+      <h3>Close &amp; Get Paid</h3>
+      <p>Pick your closing date. We handle all the paperwork and pay all closing costs. Walk away with cash in hand.</p>
     </div>
   </div>
+  <div class="section-divider"></div>
 </section>
 
-<!-- GOOGLE REVIEWS (Section 9) -->
-<section class="google-reviews" id="reviews">
-  <div class="google-reviews-banner">
-    <p>Just Like We Bought Their Maryland Home, And We Can Buy Yours As Well!</p>
+<!-- ===== OFFERS SECTION ===== -->
+<section class="section offers" id="offers">
+  <div class="section-header reveal">
+    <div class="section-label">Our Solutions</div>
+    <h2 class="section-title">Multiple Ways to <span class="gold">Sell Your Home</span></h2>
+    <p class="section-subtitle">Every situation is different. That's why we offer flexible solutions tailored to your needs.</p>
   </div>
-  <div class="google-reviews-grid">
-    <div class="g-review-card">
-      <div class="g-review-header">
-        <div class="g-avatar" style="background:#3F51B5;">J</div>
-        <div class="g-reviewer-info">
-          <strong>John Parsons</strong>
-          <span class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        </div>
-        <div class="g-google-logo">Google<br><span>Reviews &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-      </div>
-      <p>Selling my home to Next Step Equity was a very smooth and professional experience. They gave an honest property assessment, and although I had similar offers, I truly appreciated their transparency throughout the process. Highly recommended!</p>
+
+  <div class="offers-grid">
+    <div class="offer-card reveal">
+      <span class="offer-badge offer-badge--gold">Most Popular</span>
+      <h3>Cash Offer</h3>
+      <p>The fastest, cleanest way to sell. Get a guaranteed cash offer and close in as few as 7 days.</p>
+      <ul class="offer-features">
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Close in as few as 7 days</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> No repairs or cleaning</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Zero fees or commissions</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> We pay all closing costs</li>
+      </ul>
+      <a href="#contact" class="btn-gold">Get My Cash Offer</a>
     </div>
-    <div class="g-review-card">
-      <div class="g-review-header">
-        <div class="g-avatar" style="background:#1565C0;">M</div>
-        <div class="g-reviewer-info">
-          <strong>Mustafa</strong>
-          <span class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        </div>
-        <div class="g-google-logo">Google<br><span>Reviews &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-      </div>
-      <p>Next Step Equity and their team were great to work with, making the sale of my investment property smooth and easy. They were responsive and professional, and I was pleasantly surprised by how quickly they found a buyer and closed.</p>
+
+    <div class="offer-card reveal">
+      <span class="offer-badge offer-badge--blue">Maximum Value</span>
+      <h3>Creative Finance</h3>
+      <p>Want to maximize your sale price? Our creative financing options can put more money in your pocket over time.</p>
+      <ul class="offer-features">
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Higher total sale price</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Monthly passive income</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Flexible terms</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Tax advantages available</li>
+      </ul>
+      <a href="#contact" class="btn-gold">Learn More</a>
     </div>
-    <div class="g-review-card">
-      <div class="g-review-header">
-        <div class="g-avatar" style="background:#00897B;">C</div>
-        <div class="g-reviewer-info">
-          <strong>Cherritta Bard</strong>
-          <span class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        </div>
-        <div class="g-google-logo">Google<br><span>Reviews &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-      </div>
-      <p>I'm very satisfied with how Next Step Equity and their team handled the sale of our home. They were knowledgeable, patient, and supportive, especially since we had no prior experience with selling a home. Highly recommended!</p>
-    </div>
-    <div class="g-review-card">
-      <div class="g-review-header">
-        <div class="g-avatar" style="background:#F9A825;">T</div>
-        <div class="g-reviewer-info">
-          <strong>Tim Rein</strong>
-          <span class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        </div>
-        <div class="g-google-logo">Google<br><span>Reviews &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-      </div>
-      <p>Next Step Equity and their team were awesome - communicative, responsive, and professional. This was my second property with them. They made everything simple and stress-free. I'd definitely recommend them to anyone selling a home.</p>
-    </div>
-    <div class="g-review-card">
-      <div class="g-review-header">
-        <div class="g-avatar" style="background:#5C6BC0;">B</div>
-        <div class="g-reviewer-info">
-          <strong>Brenda Collier</strong>
-          <span class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        </div>
-        <div class="g-google-logo">Google<br><span>Reviews &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-      </div>
-      <p>We just sold our last rental in Dundalk through Next Step Equity. It wasn't easy due to legal issues with family, but they guided us through it all with patience and professionalism. Couldn't have done it without them.</p>
-    </div>
-    <div class="g-review-card">
-      <div class="g-review-header">
-        <div class="g-avatar" style="background:#E65100;">H</div>
-        <div class="g-reviewer-info">
-          <strong>Heather Napolitano</strong>
-          <span class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        </div>
-        <div class="g-google-logo">Google<br><span>Reviews &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-      </div>
-      <p>We sold our Canton row house with Next Step Equity. Their team made the process smooth and stress-free from start to finish. They were transparent, fair, and closed quickly. Highly recommend for anyone looking to sell fast.</p>
+
+    <div class="offer-card reveal">
+      <span class="offer-badge offer-badge--red">Urgent</span>
+      <h3>Foreclosure Exit</h3>
+      <p>Facing foreclosure? We specialize in fast closings that can stop the process and protect your credit score.</p>
+      <ul class="offer-features">
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Stop foreclosure fast</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Protect your credit</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> We handle lender negotiations</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Cash at closing guaranteed</li>
+      </ul>
+      <a href="#contact" class="btn-gold">Get Emergency Help</a>
     </div>
   </div>
+  <div class="section-divider"></div>
 </section>
 
-<!-- ABOUT US -->
-<section class="section about" id="about">
-  <h2 class="section-title">Why We Do This</h2>
-  <div class="about-content">
-    <p>We started <span class="gold-text">Next Step Equity</span> because we saw too many homeowners get stuck - stuck with houses they couldn't sell, stuck in situations that felt hopeless, stuck dealing with a system that wasn't built for them. We believe <span class="gold-text">every homeowner deserves a fair way out.</span></p>
-    <p>We're not agents. We're not flippers looking to lowball you. We're a <span class="gold-text">local Maryland team</span> that buys houses directly so you can skip the fees, skip the repairs, and get on with your life. Your next chapter starts here.</p>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section faq" id="faq">
-  <h2 class="section-title">Frequently Asked Questions</h2>
-  <p class="section-subtitle">Get answers to the most common questions about selling your house to us.</p>
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-question">
-        How fast can you close?
-        <span class="arrow">&#9660;</span>
-      </button>
-      <div class="faq-answer">
-        <p>We can close in as little as 7 days, or on your timeline. You pick the closing date that works best for you.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        Do I need to make repairs before selling?
-        <span class="arrow">&#9660;</span>
-      </button>
-      <div class="faq-answer">
-        <p>Absolutely not! We buy houses as-is. No repairs, no cleaning, no renovations needed. We handle everything.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        Are there any fees or commissions?
-        <span class="arrow">&#9660;</span>
-      </button>
-      <div class="faq-answer">
-        <p>Zero fees and zero commissions. The offer we make is the amount you receive. We even cover closing costs.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        What types of properties do you buy?
-        <span class="arrow">&#9660;</span>
-      </button>
-      <div class="faq-answer">
-        <p>We buy single-family homes, townhouses, condos, duplexes, and multi-family properties in any condition throughout Maryland.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">
-        Is there any obligation if I request an offer?
-        <span class="arrow">&#9660;</span>
-      </button>
-      <div class="faq-answer">
-        <p>None at all. Our offers are completely free and no-obligation. If you decide it&rsquo;s not right for you, simply walk away.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BANNER -->
-<section class="cta-banner">
-  <h2>Don't Let Your House Hold You Back Any Longer</h2>
-  <p>Take the first step toward your fresh start. Get a free, no-obligation cash offer today.</p>
-  <a href="#leadForm" class="btn-cta">Get My Fair Cash Offer!</a>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <p>&copy; 2026 Next Step Equity. All Rights Reserved.</p>
-  <p><a href="tel:+14433295910">(443) 329-5910</a> &nbsp;|&nbsp; Maryland Home Buyers</p>
-</footer>
-
-<!-- JAVASCRIPT -->
 <script>
-  // Mobile hamburger menu toggle
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
+(function() {
+  'use strict';
 
-  hamburger.addEventListener('click', function () {
-    navLinks.classList.toggle('active');
+  // === Sticky nav scroll effect ===
+  var navbar = document.getElementById('navbar');
+  var scrolled = false;
+  window.addEventListener('scroll', function() {
+    var shouldBeScrolled = window.scrollY > 20;
+    if (shouldBeScrolled !== scrolled) {
+      scrolled = shouldBeScrolled;
+      navbar.classList.toggle('scrolled', scrolled);
+    }
+  }, { passive: true });
+
+  // === Hamburger menu ===
+  var hamburger = document.getElementById('hamburger');
+  var navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', function() {
+    var isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
   // Close mobile menu when a link is clicked
-  navLinks.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      navLinks.classList.remove('active');
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     });
   });
 
-  // FAQ accordion
-  document.querySelectorAll('.faq-question').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      const item = this.closest('.faq-item');
-      const isActive = item.classList.contains('active');
+  // === Floating particles ===
+  var particlesContainer = document.getElementById('heroParticles');
+  var particleCount = window.innerWidth < 600 ? 15 : 30;
 
-      // Close all FAQ items
-      document.querySelectorAll('.faq-item').forEach(function (faq) {
-        faq.classList.remove('active');
-      });
+  for (var i = 0; i < particleCount; i++) {
+    var p = document.createElement('div');
+    p.className = 'particle';
+    var size = Math.random() * 3 + 1;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.bottom = -(Math.random() * 20) + '%';
+    p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    particlesContainer.appendChild(p);
+  }
 
-      // Open clicked one if it wasn't already open
-      if (!isActive) {
-        item.classList.add('active');
+  // === Scroll reveal ===
+  var revealEls = document.querySelectorAll('.reveal');
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
       }
     });
-  });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(function(el) { revealObserver.observe(el); });
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+  // === Smooth scroll for anchor links ===
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        e.preventDefault();
+        var offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
   });
-
-  // Form submission handler — sends data to Go High Level
-  document.getElementById('leadForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const form = this;
-    const submitBtn = form.querySelector('.btn-cta');
-    const originalText = submitBtn.textContent;
-
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach(function (value, key) {
-      data[key] = value;
-    });
-
-    // Map form fields to GHL expected field names
-    const payload = {
-      address: data.address,
-      first_name: data.firstName,
-      last_name: data.lastName,
-      phone: data.phone,
-      email: data.email
-    };
-
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-
-    fetch('https://api.leadconnectorhq.com/widget/form/XvcXuJfm6G62kRmOsGY4', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(function () {
-      form.reset();
-      submitBtn.textContent = 'Offer Requested!';
-      setTimeout(function () {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }, 3000);
-    })
-    .catch(function () {
-      submitBtn.textContent = 'Error — Try Again';
-      submitBtn.disabled = false;
-      setTimeout(function () {
-        submitBtn.textContent = originalText;
-      }, 3000);
-    });
-  });
-
-  // Second form submission handler (Section 4)
-  document.getElementById('leadForm2').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const form = this;
-    const submitBtn = form.querySelector('.btn-cta');
-    const originalText = submitBtn.textContent;
-
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach(function (value, key) {
-      data[key] = value;
-    });
-
-    const payload = {
-      address: data.address,
-      first_name: data.firstName,
-      last_name: data.lastName,
-      phone: data.phone,
-      email: data.email
-    };
-
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-
-    fetch('https://api.leadconnectorhq.com/widget/form/XvcXuJfm6G62kRmOsGY4', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(function () {
-      form.reset();
-      submitBtn.textContent = 'Offer Requested!';
-      setTimeout(function () {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }, 3000);
-    })
-    .catch(function () {
-      submitBtn.textContent = 'Error — Try Again';
-      submitBtn.disabled = false;
-      setTimeout(function () {
-        submitBtn.textContent = originalText;
-      }, 3000);
-    });
-  });
-
-  // Third form submission handler (Section 8)
-  document.getElementById('leadForm3').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    var form = this;
-    var submitBtn = form.querySelector('.btn-cta');
-    var originalText = submitBtn.textContent;
-
-    var formData = new FormData(form);
-    var data = {};
-    formData.forEach(function (value, key) { data[key] = value; });
-
-    var payload = {
-      address: data.address,
-      first_name: data.firstName,
-      last_name: data.lastName,
-      phone: data.phone,
-      email: data.email
-    };
-
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-
-    fetch('https://api.leadconnectorhq.com/widget/form/XvcXuJfm6G62kRmOsGY4', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(function () {
-      form.reset();
-      submitBtn.textContent = 'Offer Requested!';
-      setTimeout(function () { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 3000);
-    })
-    .catch(function () {
-      submitBtn.textContent = 'Error - Try Again';
-      submitBtn.disabled = false;
-      setTimeout(function () { submitBtn.textContent = originalText; }, 3000);
-    });
-  });
+})();
 </script>
 
 </body>
